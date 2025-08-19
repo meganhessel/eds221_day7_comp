@@ -25,3 +25,38 @@ penguins %>%
             ss_flip_len = n()
             )
 
+animals <- data.frame(
+  stringsAsFactors = FALSE,
+   location = c("lagoon", "bluff", "creek", "oaks", "bluff"),
+  species = c("bobcat", "coyote", "fox", "squirrel", "bobcat"),
+  maturity = c("adult", "juvenile", "adult", "juvenile", "adult"))
+
+sites <- data.frame(
+  stringsAsFactors = FALSE,
+          location = c("beach", "lagoon", "bluff", "oaks"),
+    full_site_name = c("Goleta Beach","UCSB Lagoon",
+                       "Ellwood Mesa","Fremont Campground"),
+      jurisdiction = c("SB City", "UCSB", "SB City", "USFS")
+)
+
+# full_join 
+full_join(animals, sites) # keeps all rows and adds all columns 
+
+# left_join 
+left_join(animals, sites)
+
+# right join 
+right_join(animals, sites)
+
+# Inner_join 
+inner_join(animals, sites)
+
+# semi_join 
+semi_join(animals, sites)
+animals %>% 
+  filter(location %in% sites$location)
+
+# anti_join 
+anti_join(animals, sites)
+animals %in% 
+  filter(!location %in% sites$location)
